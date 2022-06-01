@@ -1,4 +1,7 @@
 import { galleryItems } from './gallery-items.js';
+import SimpleLightbox from 'simplelightbox';
+
+import 'simplelightbox/dist/simple-lightbox.min.css';
 // Variables
 const galleryRef = document.querySelector('div.gallery');
 
@@ -6,7 +9,7 @@ const galleryRef = document.querySelector('div.gallery');
 renderGallery(galleryItems);
 
 //Grand magic
-const lightBoxInstance = new SimpleLightbox('.gallery a', {
+new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
 });
