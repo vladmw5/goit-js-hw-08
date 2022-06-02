@@ -3,15 +3,12 @@ import throttle from 'lodash.throttle';
 const formRef = document.querySelector('.feedback-form');
 const LOCAL_STORAGE_SAVE_KEY = 'feedback-form-state';
 
-formRef.addEventListener(
-  'input',
-  throttle(onFeedbackFormInputSaveToLocalStorage, 500)
-);
+formRef.addEventListener('input', throttle(onFeedbackFormInput, 500));
 formRef.addEventListener('submit', onFeedbackFormSubmit);
 
 loadSavedData();
 
-function onFeedbackFormInputSaveToLocalStorage(event) {
+function onFeedbackFormInput(event) {
   const dataToSave = {
     email: formRef.email.value,
     message: formRef.message.value,
@@ -22,6 +19,10 @@ function onFeedbackFormInputSaveToLocalStorage(event) {
 
 function onFeedbackFormSubmit(event) {
   event.preventDefault();
+  console.log({
+    email: event.currentTarget.elements.email.value,
+    message: event.currentTarget.elements.message.value,
+  });
   removeFromLocalStorage(LOCAL_STORAGE_SAVE_KEY);
   event.currentTarget.reset();
 }
